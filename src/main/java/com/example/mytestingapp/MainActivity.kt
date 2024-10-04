@@ -1,13 +1,10 @@
 package com.example.mytestingapp
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.room.Room
 import com.example.mytestingapp.databinding.ActivityMainBinding
 import com.example.mytestingapp.learn_room.Contact
 import com.example.mytestingapp.learn_room.ContactDatabase
@@ -31,9 +28,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun getData(view: View) {
-        database.contactDao().getContact().observe(this, Observer {
+    //get data from room
+    fun getData() {
+        database.contactDao().getContact().observe(this) {
             Log.d("MAIN", "getData: ${it.toString()}")
-        })
+        }
     }
 }
